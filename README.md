@@ -13,11 +13,27 @@ Setiap pemain diubah menjadi vektor 12 fitur (*sidik jari gaya main*), lalu mode
 | | |
 |---|---|
 | **Data** | Statistik pemain musim 2025/2026 (`players_data_light-2025_2026.csv`), 2.839 baris × 53 kolom |
+| **Cakupan liga** | Top 5 liga Eropa: Premier League, La Liga, Serie A, Bundesliga, dan Ligue 1 |
 | **Data bersih** | 1.464 pemain lapangan × 60 kolom |
 | **Pendekatan** | Unsupervised learning: `StandardScaler` + `NearestNeighbors` (cosine) |
 | **Fitur model** | 12 fitur (umur, menembak, output serangan, bertahan, duel) |
 | **Output** | Top-5 pemain dengan gaya main paling mirip |
 | **Antarmuka** | Dashboard Streamlit *(dalam pengembangan)* |
+
+---
+
+## 📚 Sumber Data
+
+| | |
+|---|---|
+| **Sumber** | Kaggle |
+| **Nama Pemilik Sumber Data** | Hubert Sidorowicz |
+| **Tautan** | https://www.kaggle.com/datasets/hubertsidorowicz/football-players-stats-2025-2026 |
+| **Musim** | 2025/2026 |
+| **Cakupan** | Top 5 liga Eropa (Premier League, La Liga, Serie A, Bundesliga, Ligue 1) |
+| **Lisensi / ketentuan penggunaan** | MIT|
+
+> Data mentah diletakkan di `data/raw/`. Sesuaikan dengan sumber di atas jika perlu mengunduh ulang.
 
 ---
 
@@ -145,6 +161,7 @@ print(result)
 
 ## ⚠️ Keterbatasan
 
+- **Cakupan hanya top 5 liga Eropa.** Pemain di liga lain (misalnya Eredivisie, Liga Portugal, Championship, atau liga di luar Eropa) tidak ada di dataset, sehingga tidak bisa dicari maupun direkomendasikan. Perbandingan juga hanya adil di antara pemain top 5 liga, karena tingkat kompetisi liga lain berbeda.
 - **Cosine membandingkan bentuk profil, bukan besar angkanya.** Karena data sudah distandardisasi, dua pemain dengan pola sama tetapi intensitas berbeda bisa tampak sangat mirip.
 - **Posisi (`Pos`) tidak dipakai sebagai fitur.** Pemain dengan posisi berbeda bisa direkomendasikan jika profilnya mirip, sehingga hasil sebaiknya difilter per posisi.
 - **Fitur condong ke ofensif.** 7 dari 12 fitur terkait serangan, sehingga rekomendasi untuk bek atau gelandang bertahan bisa kurang tajam.
@@ -158,6 +175,7 @@ print(result)
 
 - [ ] Dashboard Streamlit: pilih pemain, tampilkan top-5 pengganti
 - [ ] Filter rekomendasi berdasarkan posisi, liga, dan rentang umur
+- [ ] Perluas cakupan data ke liga lain di luar top 5 Eropa
 - [ ] Bandingkan metrik cosine dengan euclidean
 - [ ] Tambah fitur bertahan dan distribusi bola agar lebih seimbang
 
